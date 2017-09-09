@@ -1,4 +1,5 @@
 window.onload = function() {
+  alert("Se carga la Pagna");
   document.getElementById('0').addEventListener('click',function(){Calculadora.Tecla_Usa(0)});
   document.getElementById('1').addEventListener('click',function(){Calculadora.Tecla_Usa(1)});
   document.getElementById('2').addEventListener('click',function(){Calculadora.Tecla_Usa(2)});
@@ -19,6 +20,7 @@ window.onload = function() {
   document.getElementById('sign').addEventListener("click",function(){Calculadora.Tecla_Usa('sign')});
   document.getElementById('punto').addEventListener("click",function(){Calculadora.Tecla_Usa('punto')});
   document.getElementById('igual').addEventListener("click",function(){Calculadora.Tecla_Usa('igual')});
+  alert("Se asignan los eventos Click";
 }
 
 var Calculadora{
