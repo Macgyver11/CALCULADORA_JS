@@ -1,4 +1,8 @@
-var Calculadora ={
+var Calculadora="algo";
+
+
+(function(){
+  
 /*Variables*/
 
   inicio(
@@ -32,10 +36,4 @@ var Calculadora ={
   Tecla_Usa: function(Tecla){
     alet(Tecla);
   }
-}
-
-Calculadora.inicio();
-
-(function(){
-  Calculadora.inicio();
 })();
