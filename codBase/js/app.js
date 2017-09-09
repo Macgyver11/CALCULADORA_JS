@@ -35,3 +35,7 @@ var Calculadora ={
 }
 
 Calculadora.inicio();
+
+(function(){
+  Calculadora.inicio();
+})();
