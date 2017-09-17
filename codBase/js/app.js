@@ -1,10 +1,99 @@
 var Numero_Uno =0, Numero_Dos =0;
-var Primer_Numero = true;
+var Primer_Numero = True, Uso_Punto = False;
+var Ultima_Operacion = "";
+
 
 function Tecla_Uso(Tecla){
+  alert(Tecla);
   if(Tecla=='sign'){
-    Muestra_Pantalla(Signo(Primer_Numero))
+    Muestra_Pantalla(Signo(Primer_Numero));
   }
+  if(Tecla=='on'){
+    Clear();
+  }
+  if(Tecla=='punto'){
+    if(Uso_Punto==False){
+      Numeros_Operacion('.', Primer_Numero);
+    }else{
+      Uso_Punto = True;
+    }
+  }
+  if(Tecla=='mas'){
+    Suma(Primer_Numero);
+  }
+  if(Tecla=='menos'){
+    Resta(Primer_Numero);
+  }
+  if(Tecla=='por'){
+    Multiplicar(Primer_Numero);
+  }
+  if(Tecla=='dividido'){
+    Dividir(Primer_Numero);
+  }
+  if(Tecla=='dividido'){
+    Igual();
+  }
+}
+
+function Igual(){
+
+}
+
+function Suma(Uno_O_Dos){
+  if(Uno_O_Dos==True){
+    Primer_Numero = False;
+    Uso_Punto = True;
+  }else{
+    Numero_Uno = Numero_Uno + Numero_Dos;
+    Numero_Dos = 0;
+    Muestra_Pantalla("");
+  }
+}
+
+function Resta(Uno_O_Dos){
+  if(Uno_O_Dos==True){
+    Primer_Numero = False;
+    Uso_Punto = True;
+  }else{
+    Numero_Uno = Numero_Uno - Numero_Dos;
+    Numero_Dos = 0;
+    Muestra_Pantalla("");
+  }
+}
+
+function Multiplicar(Uno_O_Dos){
+  if(Uno_O_Dos==True){
+    Primer_Numero = False;
+    Uso_Punto = True;
+  }else{
+    Numero_Uno = Numero_Uno * Numero_Dos;
+    Numero_Dos = 0;
+    Muestra_Pantalla("");
+  }
+}
+
+function Dividir(Uno_O_Dos){
+  if(Uno_O_Dos==True){
+    Primer_Numero = False;
+    Uso_Punto = True;
+  }else{
+    if(Numero_Dos<>0){
+      Numero_Uno = Numero_Uno / Numero_Dos;
+      Numero_Dos = 0;
+      Muestra_Pantalla("");
+    }else{
+      Clear();
+    }
+  }
+}
+
+function Clear(){
+  Numero_Uno =0;
+  Numero_Dos =0;
+  Primer_Numero = True;
+  Uso_Punto = False
+  Ultima_Operacion = "";
+  Muestra_Pantalla(0)
 }
 
 function Signo(Uno_O_Dos){
@@ -25,24 +114,20 @@ function Numeros_Operacion(Numero_Digita, Uno_O_Dos){
   }
 }
 
-
 function Muestra_Pantalla(Texto_mostrar){
   docment.getElementById('display').innerHTML = Texto_mostrar.substring(0, 8)
 }
 
-/*
-window.onload = function() {
-  alert("Se carga la Pagna");
-  document.getElementById('0').addEventListener('click', Calculadora.Tecla_Usa(0));
-  document.getElementById('1').addEventListener('click', Calculadora.Tecla_Usa(1));
-  document.getElementById('2').addEventListener('click', Calculadora.Tecla_Usa(2));
-  document.getElementById('3').addEventListener('click', Calculadora.Tecla_Usa(3));
-  document.getElementById('4').addEventListener('click', Calculadora.Tecla_Usa(4));
-  document.getElementById('5').addEventListener('click', Calculadora.Tecla_Usa(5));
-  document.getElementById('6').addEventListener('click', Calculadora.Tecla_Usa(6));
-  document.getElementById('7').addEventListener('click', Calculadora.Tecla_Usa(7));
-  document.getElementById('8').addEventListener('click', Calculadora.Tecla_Usa(8));
-  document.getElementById('9').addEventListener('click', Calculadora.Tecla_Usa(9));
+  document.getElementById('0'.onclick = Tecla_Uso(0));
+  document.getElementById('1').addEventListener('onclick', Calculadora.Tecla_Usa(1));
+  document.getElementById('2').addEventListener('onclick', Calculadora.Tecla_Usa(2));
+  document.getElementById('3').addEventListener('onclick', Calculadora.Tecla_Usa(3));
+  document.getElementById('4').addEventListener('onclick', Calculadora.Tecla_Usa(4));
+  document.getElementById('5').addEventListener('onclick', Calculadora.Tecla_Usa(5));
+  document.getElementById('6').addEventListener('onclick', Calculadora.Tecla_Usa(6));
+  document.getElementById('7').addEventListener('onclick', Calculadora.Tecla_Usa(7));
+  document.getElementById('8').addEventListener('onclick', Calculadora.Tecla_Usa(8));
+  document.getElementById('9').addEventListener('onclick', Calculadora.Tecla_Usa(9));
 /*Operaciones*/
 /*
   document.getElementById('mas').addEventListener("click", Calculadora.Tecla_Usa('mas'));
