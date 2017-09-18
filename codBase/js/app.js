@@ -2,7 +2,6 @@ var Numero_Uno =0, Numero_Dos =0;
 var Primer_Numero = True, Uso_Punto = False;
 var Ultima_Operacion = "";
 
-
 function Tecla_Uso(Tecla){
   alert(Tecla);
   if(Tecla=='sign'){
@@ -19,67 +18,99 @@ function Tecla_Uso(Tecla){
     }
   }
   if(Tecla=='mas'){
-    Suma(Primer_Numero);
+    if(Ultima_Operacion == ""){
+      Primer_Numero = False;
+    }else{
+      Suma(Primer_Numero);
+    }
   }
   if(Tecla=='menos'){
-    Resta(Primer_Numero);
+    if(Ultima_Operacion == ""){
+      Primer_Numero = False;
+    }else{
+      Resta(Primer_Numero);
+    }
   }
   if(Tecla=='por'){
-    Multiplicar(Primer_Numero);
+    if(Ultima_Operacion == ""){
+      Primer_Numero = False;
+    }else{
+      Multiplicar(Primer_Numero);
+    }
   }
   if(Tecla=='dividido'){
-    Dividir(Primer_Numero);
+    if(Ultima_Operacion == ""){
+      Primer_Numero = False;
+    }else{
+      Dividir(Primer_Numero);
+    }
   }
-  if(Tecla=='dividido'){
-    Igual();
+  if(Tecla=='igual'){
+    Igual(Primer_Numero);
   }
 }
 
-function Igual(){
-
+function Igual(Uno_O_Dos){
+  if(Uno_O_Dos == False){
+    if(Ultima_Operacion=='mas'){
+      Suma(Primer_Numero);
+    }
+  if(Ultima_Operacion=='menos'){
+    Resta(Primer_Numero);
+   }
+  if(Ultima_Operacion=='por'){
+    Multiplicar(Primer_Numero);
+  }
+  if(Ultima_Operacion=='dividido'){
+    Dividir(Primer_Numero);
+    Muestra_Pantalla(Numero_Uno);
+  }
 }
 
 function Suma(Uno_O_Dos){
-  if(Uno_O_Dos==True){
-    Primer_Numero = False;
+  if(Uno_O_Dos == True){
     Uso_Punto = True;
   }else{
     Numero_Uno = Numero_Uno + Numero_Dos;
     Numero_Dos = 0;
+    Ultima_Operacion = "mas";
     Muestra_Pantalla("");
   }
 }
 
 function Resta(Uno_O_Dos){
-  if(Uno_O_Dos==True){
+  if(Uno_O_Dos == True){
     Primer_Numero = False;
     Uso_Punto = True;
   }else{
     Numero_Uno = Numero_Uno - Numero_Dos;
     Numero_Dos = 0;
+    Ultima_Operacion = "menos";
     Muestra_Pantalla("");
   }
 }
 
 function Multiplicar(Uno_O_Dos){
-  if(Uno_O_Dos==True){
+  if(Uno_O_Dos == True){
     Primer_Numero = False;
     Uso_Punto = True;
   }else{
     Numero_Uno = Numero_Uno * Numero_Dos;
     Numero_Dos = 0;
+    Ultima_Operacion = "por";
     Muestra_Pantalla("");
   }
 }
 
 function Dividir(Uno_O_Dos){
-  if(Uno_O_Dos==True){
+  if(Uno_O_Dos == True){
     Primer_Numero = False;
     Uso_Punto = True;
   }else{
-    if(Numero_Dos<>0){
+    if(Numero_Dos <> 0){
       Numero_Uno = Numero_Uno / Numero_Dos;
       Numero_Dos = 0;
+      Ultima_Operacion = "dividido";
       Muestra_Pantalla("");
     }else{
       Clear();
