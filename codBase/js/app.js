@@ -3,7 +3,6 @@ var Primer_Numero = True, Uso_Punto = False;
 var Ultima_Operacion = "";
 
 function Tecla_Uso(Tecla){
-  alert(Tecla);
   if(Tecla=='sign'){
     Muestra_Pantalla(Signo(Primer_Numero));
   }
@@ -149,34 +148,24 @@ function Muestra_Pantalla(Texto_mostrar){
   docment.getElementById('display').innerHTML = Texto_mostrar.substring(0, 8)
 }
 
-  document.getElementById('0'.onclick = Tecla_Uso(0));
-  document.getElementById('1').addEventListener('onclick', Calculadora.Tecla_Usa(1));
-  document.getElementById('2').addEventListener('onclick', Calculadora.Tecla_Usa(2));
-  document.getElementById('3').addEventListener('onclick', Calculadora.Tecla_Usa(3));
-  document.getElementById('4').addEventListener('onclick', Calculadora.Tecla_Usa(4));
-  document.getElementById('5').addEventListener('onclick', Calculadora.Tecla_Usa(5));
-  document.getElementById('6').addEventListener('onclick', Calculadora.Tecla_Usa(6));
-  document.getElementById('7').addEventListener('onclick', Calculadora.Tecla_Usa(7));
-  document.getElementById('8').addEventListener('onclick', Calculadora.Tecla_Usa(8));
-  document.getElementById('9').addEventListener('onclick', Calculadora.Tecla_Usa(9));
-/*Operaciones*/
-/*
-  document.getElementById('mas').addEventListener("click", Calculadora.Tecla_Usa('mas'));
-  document.getElementById('menos').addEventListener("click", Calculadora.Tecla_Usa('menos'));
-  document.getElementById('por').addEventListener("click", Calculadora.Tecla_Usa('por'));
-  document.getElementById('dividido').addEventListener("click", Calculadora.Tecla_Usa('dividido'));
-/*Funciones Especiales*/
-/*
-  document.getElementById('on').addEventListener("click", Calculadora.Tecla_Usa('on'));
-  document.getElementById('sign').addEventListener("click", Calculadora.Tecla_Usa('sign'));
-  document.getElementById('punto').addEventListener("click", Calculadora.Tecla_Usa('punto'));
-  document.getElementById('igual').addEventListener("click", Calculadora.Tecla_Usa('igual'));
-  alert("Se asignan los eventos Click";
-}
-
-var Calculadora{
-  function Tecla_Usa(Tecla) {
-    alert("La tecla que presiona es: " & Tecla);
-  }
-}
-/*
+  Document.getElementById('0').addEventListener('onclick', Tecla_Uso(0));
+  Document.getElementById('1').addEventListener('onclick', Tecla_Uso(1));
+  Document.getElementById('2').addEventListener('onclick', Tecla_Uso(2));
+  Document.getElementById('3').addEventListener('onclick', Tecla_Uso(3));
+  Document.getElementById('4').addEventListener('onclick', Tecla_Uso(4));
+  Document.getElementById('5').addEventListener('onclick', Tecla_Uso(5));
+  Document.getElementById('6').addEventListener('onclick', Tecla_Uso(6));
+  Document.getElementById('7').addEventListener('onclick', Tecla_Uso(7));
+  Document.getElementById('8').addEventListener('onclick', Tecla_Uso(8));
+  Document.getElementById('9').addEventListener('onclick', Tecla_Uso(9));
+  
+  Document.getElementById('on').addEventListener('onclick', Tecla_Uso('on'));
+  Document.getElementById('sign').addEventListener('onclick', Tecla_Uso('sign'));
+  Document.getElementById('raiz').addEventListener('onclick', Tecla_Uso('raiz'));
+  Document.getElementById('punto').addEventListener('onclick', Tecla_Uso('punto'));
+  Document.getElementById('igual').addEventListener('onclick', Tecla_Uso('igual'));
+  
+  Document.getElementById('por').addEventListener('onclick', Tecla_Uso('por'));
+  Document.getElementById('menos').addEventListener('onclick', Tecla_Uso('menos'));
+  Document.getElementById('dividido').addEventListener('onclick', Tecla_Uso('dividido'));
+  Document.getElementById('mas').addEventListener('onclick', Tecla_Uso('mas'));
