@@ -2,9 +2,7 @@ var Numero_Uno =0, Numero_Dos =0;
 var Primer_Numero = True, Uso_Punto = False;
 var Ultima_Operacion = "";
 
-
 function Tecla_Uso(Tecla){
-  alert(Tecla);
   if(Tecla=='sign'){
     Muestra_Pantalla(Signo(Primer_Numero));
   }
@@ -19,7 +17,6 @@ function Tecla_Uso(Tecla){
     }
   }
   if(Tecla=='mas'){
-    Suma(Primer_Numero);
     if(Ultima_Operacion == ""){
       Primer_Numero = False;
     }else{
@@ -27,7 +24,6 @@ function Tecla_Uso(Tecla){
     }
   }
   if(Tecla=='menos'){
-    Resta(Primer_Numero);
     if(Ultima_Operacion == ""){
       Primer_Numero = False;
     }else{
@@ -35,7 +31,6 @@ function Tecla_Uso(Tecla){
     }
   }
   if(Tecla=='por'){
-    Multiplicar(Primer_Numero);
     if(Ultima_Operacion == ""){
       Primer_Numero = False;
     }else{
@@ -43,21 +38,16 @@ function Tecla_Uso(Tecla){
     }
   }
   if(Tecla=='dividido'){
-    Dividir(Primer_Numero);
     if(Ultima_Operacion == ""){
       Primer_Numero = False;
     }else{
       Dividir(Primer_Numero);
     }
   }
-  if(Tecla=='dividido'){
-    Igual();
   if(Tecla=='igual'){
     Igual(Primer_Numero);
   }
 }
-
-function Igual(){
 
 function Igual(Uno_O_Dos){
   if(Uno_O_Dos == False){
@@ -77,8 +67,6 @@ function Igual(Uno_O_Dos){
 }
 
 function Suma(Uno_O_Dos){
-  if(Uno_O_Dos==True){
-    Primer_Numero = False;
   if(Uno_O_Dos == True){
     Uso_Punto = True;
   }else{
@@ -90,7 +78,6 @@ function Suma(Uno_O_Dos){
 }
 
 function Resta(Uno_O_Dos){
-  if(Uno_O_Dos==True){
   if(Uno_O_Dos == True){
     Primer_Numero = False;
     Uso_Punto = True;
@@ -103,7 +90,6 @@ function Resta(Uno_O_Dos){
 }
 
 function Multiplicar(Uno_O_Dos){
-  if(Uno_O_Dos==True){
   if(Uno_O_Dos == True){
     Primer_Numero = False;
     Uso_Punto = True;
@@ -116,12 +102,10 @@ function Multiplicar(Uno_O_Dos){
 }
 
 function Dividir(Uno_O_Dos){
-  if(Uno_O_Dos==True){
   if(Uno_O_Dos == True){
     Primer_Numero = False;
     Uso_Punto = True;
   }else{
-    if(Numero_Dos<>0){
     if(Numero_Dos <> 0){
       Numero_Uno = Numero_Uno / Numero_Dos;
       Numero_Dos = 0;
@@ -164,6 +148,7 @@ function Muestra_Pantalla(Texto_mostrar){
   docment.getElementById('display').innerHTML = Texto_mostrar.substring(0, 8)
 }
 
+<<<<<<< HEAD
     Document.getElementById("0").addEventListener("onclick", Tecla_Uso(0), true)
   Document.getElementById('1').addEventListener('onclick', Tecla_Uso(1),true)
   Document.getElementById('2').addEventListener('onclick', Calculadora.Tecla_Usa(2));
