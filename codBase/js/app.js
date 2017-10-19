@@ -109,13 +109,13 @@ function Dividir(Uno_O_Dos){
     Primer_Numero = False;
     Uso_Punto = false;
   }else{
-    if(Numero_Dos <> 0){
+    if(Numero_Dos == 0){
+      Clear();
+    }else{
       Numero_Uno = Numero_Uno / Numero_Dos;
       Numero_Dos = 0;
       Ultima_Operacion = "dividido";
       Muestra_Pantalla("");
-    }else{
-      Clear();
     }
   }
 }
