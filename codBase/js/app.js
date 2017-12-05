@@ -1,3 +1,9 @@
+var Calculadora = {};
+
+Calculadora=(function () {}());
+
+
+
 var Numero_Uno =0, Numero_Dos =0;
 var Primer_Numero = True, Uso_Punto = False;
 var Ultima_Operacion = "";
