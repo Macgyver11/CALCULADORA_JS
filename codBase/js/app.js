@@ -1,6 +1,16 @@
 var Calculadora = {};
 
-Calculadora=(function () {}());
+Calculadora=(function () {
+  /*'inicial las variables*/
+    var Numero_Uno, Numero_Dos;
+
+  Inicia_Calculadora();
+  
+  function Inicia_Calculadora() {
+    Numero_Uno = null;
+    Numero_Dos = null;
+  }
+}());
 
 
 
