@@ -1,191 +1,158 @@
 var Calculadora = {};
 
-Calculadora=(function () {
-  /*'inicial las variables*/
-    var Numero_Uno, Numero_Dos;
+Calculadora = (function ()
+    {
+        /*Se crean las variables que se usan a lo largo del codigo*/
+        var Boton, Pantalla, Valor_Numero, Con_Punto, Numero_Uno, Numero_Dos, Operacion;
 
-  Inicia_Calculadora();
-  
-  function Inicia_Calculadora() {
-    Numero_Uno = null;
-    Numero_Dos = null;
-  }
-}());
+        IniciarCalculadora();
 
+        function IniciarCalculadora()
+            {
+                /*Da un valor inicial a las variables*/
+                Valor_Numero = 0;
+                Con_Punto = 0;
+                Operacion = null;
+                Numero_Dos = null;
+                Pantalla = document.getElementById('display');
 
+                var Tecla_Actual = document.querySelectorAll('.tecla');
 
-var Numero_Uno =0, Numero_Dos =0;
-var Primer_Numero = True, Uso_Punto = False;
-var Ultima_Operacion = "";
-
-function Tecla_Uso(Tecla){
-  if(Tecla=='sign'){
-    Muestra_Pantalla(Signo(Primer_Numero));
-  }
-  if(Tecla=='on'){
-    Clear();
-  }
-  if(Tecla=='punto'){
-    if(Uso_Punto==False){
-      Numeros_Operacion('.', Primer_Numero);
-      Uso_Punto = True;
-    }else{
-      Uso_Punto = True;
-    }
-  }
-  if(Tecla=='mas'){
-    if(Ultima_Operacion == ""){
-      Primer_Numero = False;
-    }else{
-      Suma(Primer_Numero);
-    }
-  }
-  if(Tecla=='menos'){
-    if(Ultima_Operacion == ""){
-      Primer_Numero = False;
-    }else{
-      Resta(Primer_Numero);
-    }
-  }
-  if(Tecla=='por'){
-    if(Ultima_Operacion == ""){
-      Primer_Numero = False;
-    }else{
-      Multiplicar(Primer_Numero);
-    }
-  }
-  if(Tecla=='dividido'){
-    if(Ultima_Operacion == ""){
-      Primer_Numero = False;
-    }else{
-      Dividir(Primer_Numero);
-    }
-  }
-  if(Tecla=='igual'){
-    Igual(Primer_Numero);
-  }
-}
-
-function Igual(Uno_O_Dos) {
-    if (Uno_O_Dos == False) {
-        if (Ultima_Operacion == 'mas') {
-            Suma(Primer_Numero);
-        }
-        if (Ultima_Operacion == 'menos') {
-            Resta(Primer_Numero);
-        }
-        if (Ultima_Operacion == 'por') {
-            Multiplicar(Primer_Numero);
-        }
-        if (Ultima_Operacion == 'dividido') {
-            Dividir(Primer_Numero);
-            Muestra_Pantalla(Numero_Uno);
-        }
-    }
-}
-
-    function Suma(Uno_O_Dos) {
-        if (Uno_O_Dos == True) {
-            Primer_Numero = false;
-            Uso_Punto = false;
-        } else {
-            Numero_Uno = Numero_Uno + Numero_Dos;
-            Numero_Dos = 0;
-            Ultima_Operacion = "mas";
-            Muestra_Pantalla("");
-            Uso_Punto = false;
-        }
-    }
-
-    function Resta(Uno_O_Dos) {
-        if (Uno_O_Dos == True) {
-            Primer_Numero = False;
-            Uso_Punto = false;
-        } else {
-            Numero_Uno = Numero_Uno - Numero_Dos;
-            Numero_Dos = 0;
-            Ultima_Operacion = "menos";
-            Muestra_Pantalla("");
-        }
-    }
-
-    function Multiplicar(Uno_O_Dos) {
-        if (Uno_O_Dos == True) {
-            Primer_Numero = False;
-            Uso_Punto = false;
-        } else {
-            Numero_Uno = Numero_Uno * Numero_Dos;
-            Numero_Dos = 0;
-            Ultima_Operacion = "por";
-            Muestra_Pantalla("");
-        }
-    }
-
-    function Dividir(Uno_O_Dos) {
-        if (Uno_O_Dos == True) {
-            Primer_Numero = False;
-            Uso_Punto = false;
-        } else {
-            if (Numero_Dos == 0) {
-                Clear();
-            } else {
-                Numero_Uno = Numero_Uno / Numero_Dos;
-                Numero_Dos = 0;
-                Ultima_Operacion = "dividido";
-                Muestra_Pantalla("");
+                for (var i = 0; i < Tecla_Actual.length; i++)
+                    {
+                        Tecla_Actual[i].style.width = "78px";
+                        Tecla_Actual[i].style.border = '0 solid #999';
+                        Tecla_Actual[i].onmousedown = Tecla_Uso;
+                        Tecla_Actual[i].onmouseup = Fin_Tecla_Uso;
+                    }
+                Actualizar_Texto_En_Pantalla();
             }
-        }
-    }
 
-    function Clear() {
-        Numero_Uno = 0;
-        Numero_Dos = 0;
-        Primer_Numero = True;
-        Uso_Punto = False
-        Ultima_Operacion = "";
-        Muestra_Pantalla(0)
-    }
+        function Tecla_Uso()
+            {
+                Boton = this;
+                /*Crea la ilusion de presionar la tecla*/
+                this.style.borderWidth = this.id != 'mas' ? '3px' : '6px 3px 4px 0';
+                switch (this.id)
+                    {
+                        /*Reinicia los valores*/
+                        case "on":
+                            Valor_Numero = 0;
+                            Numero_Dos = null;
+                            Con_Punto = 0;
+                            Operacion = null;
+                        break;
 
-    function Signo(Uno_O_Dos) {
-        if (Uno_O_Dos == true) {
-            Numero_Uno = Numero_Uno * (-1)
-            return (Numero_Uno);
-        } else {
-            Numero_Dos = Numero_Dos * (-1)
-            return (Numero_Dos);
-        }
-    }
+                        /*Cambia el signo del numero*/
+                        case "sign":
+                            Valor_Numero *= -1;
+                        break;
 
-    function Numeros_Operacion(Numero_Digita, Uno_O_Dos) {
-        if (Uno_O_Dos == true) {
-            Numero_Uno = Numero_Uno & Numero_Digita
-        } else {
-            Numero_Dos = Numero_Dos & Numero_Digita
-        }
-    }
+                        case "punto":
+                            Con_Punto = (Con_Punto == 0) ? -1 : Con_Punto;
+                        break;
 
-    function Muestra_Pantalla(Texto_mostrar) {
-        docment.getElementById('display').innerHTML = Texto_mostrar.substring(0, 8);
-    }
+                        /*Hace lo mismo para cualquiera de los numero*/
+                        case "0":
+                        case "1":
+                        case "2":
+                        case "3":
+                        case "4":
+                        case "5":
+                        case "6":
+                        case "7":
+                        case "8":
+                        case "9":
+                            if (Numero_Dos !== null) return;
 
-    Document.getElementById('0').addEventListener('onclick', Tecla_Uso(0));
-    Document.getElementById('1').addEventListener('onclick', Tecla_Uso(1));
-    Document.getElementById('2').addEventListener('onclick', Tecla_Uso(2));
-    Document.getElementById('3').addEventListener('onclick', Tecla_Uso(3));
-    Document.getElementById('4').addEventListener('onclick', Tecla_Uso(4));
-    Document.getElementById('5').addEventListener('onclick', Tecla_Uso(5));
-    Document.getElementById('6').addEventListener('onclick', Tecla_Uso(6));
-    Document.getElementById('7').addEventListener('onclick', Tecla_Uso(7));
-    Document.getElementById('8').addEventListener('onclick', Tecla_Uso(8));
-    Document.getElementById('9').addEventListener('onclick', Tecla_Uso(9));
+                            var Signo_Numero = Math.sign(Valor_Numero) | 1;
 
-    Document.getElementById('on').addEventListener('onclick', Tecla_Uso('on'));
-    Document.getElementById('sign').addEventListener('onclick', Tecla_Uso('sign'));
-    Document.getElementById('raiz').addEventListener('onclick', Tecla_Uso('raiz'));
-    Document.getElementById('punto').addEventListener('onclick', Tecla_Uso('punto'));
-    Document.getElementById('igual').addEventListener('onclick', Tecla_Uso('igual'));
+                            if (Cantidad_Digitos(Valor_Numero, Con_Punto) == 8 || Con_Punto < -8) return;
+                                Valor_Numero = Math.abs(Valor_Numero);
+                            if (Con_Punto == 0)
+                                Valor_Numero = Valor_Numero * 10 + parseInt(this.id);
+                            else
+                                Valor_Numero += parseInt(this.id) * Math.pow(10, Con_Punto--);
+                                Valor_Numero *= Signo_Numero;
+                                Numero_Dos = null;
+                        break;
 
-    Document.getElementById('por').addEventListener('onclick', Tecla_Uso('por'));
-    Document.getElementById('menos').addEventListener('onclick', Tecla_Uso('menos'));
-    Document.getElementById('dividido').addEventListener('onclick', Tecla_Uso('dividido'));
-    Document.getElementById('mas').addEventListener('onclick', Tecla_Uso('mas'));
+                        case "mas":
+                        case "menos":
+                        case "por":
+                        case "dividido":
+                            if (Valor_Numero == 0) return;
+                            Numero_Uno = Valor_Numero;
+                            Numero_Dos = null;
+                            Valor_Numero = 0;
+                            Con_Punto = 0;
+                            Operacion = this.id;
+                            break;
+
+                        case "igual":
+                            if (Operacion == null || Numero_Uno == null) return;
+
+                            if (Numero_Dos == null)
+                                Numero_Dos = Valor_Numero;
+                            else
+                                Numero_Uno = Valor_Numero;
+
+                            /*Realiza el calculo dependiendo la opeacion a utilizar*/
+                            switch (Operacion)
+                                {
+                                    case "mas":
+                                        Valor_Numero = Numero_Uno + Numero_Dos;
+                                        break;
+
+                                    case "menos":
+                                        Valor_Numero = Numero_Uno - Numero_Dos;
+                                        break;
+
+                                    case "por":
+                                        Valor_Numero = Numero_Uno * Numero_Dos;
+                                        break;
+
+                                    case "dividido":
+                                        Valor_Numero = Numero_Uno / Numero_Dos;
+                                        break;
+
+                                }
+                            break;
+
+                        /*No genera ninguna accion*/
+                        default:
+                            return; 
+                    }
+                Actualizar_Texto_En_Pantalla();
+            }
+
+        function Fin_Tecla_Uso()
+            {
+                /*Regresa el boton al tamaño inicia*/
+                Boton.style.borderWidth = '0';
+            }
+
+        function Actualizar_Texto_En_Pantalla()
+            {
+            /*Pasa a texto el numero*/
+                var Valor_En_Pantalla = Valor_Numero.toString(), pos = Valor_En_Pantalla.indexOf('.');
+                if (Valor_En_Pantalla.length > 10)
+                    {
+                        Con_Punto = pos ? -Math.min(7, Valor_En_Pantalla.length - pos - 1) : 0;
+                        Valor_Numero = Valor_Numero.toFixed(-Con_Punto);
+                    }
+                Valor_En_Pantalla = Valor_Numero.toString() + (Con_Punto < 0 && Valor_En_Pantalla.indexOf(".") < 0 ? "." : "");
+                Valor_En_Pantalla = (Valor_En_Pantalla == "0" && Operacion != null) ? "" : Valor_En_Pantalla.substring(0, 8);
+            /*Toma el texto y lo actualiza en la pantalla*/
+                Pantalla.innerHTML = Valor_En_Pantalla;
+                Valor_Numero = Number(Valor_En_Pantalla);
+            }
+
+        /*Valida la cantidad de digitos*/
+        function Cantidad_Digitos(Num, Pot)
+            {
+                Num = Math.abs(Num);
+                if (Num < 10) return 1;
+                return Math.floor(Math.log10(Num)) + 1 - (Pot < 0 ? Pot + 1 : 0);
+            }
+    }());
